@@ -1,0 +1,10 @@
+filelocation is the path of file gestionStock 
+
+command 1: 
+cd "C:/filelocation"; & ".venv/Scripts/python.exe" -m py_compile ui/main_window.py
+command 2: 
+cd "C:/filelocation"; & ".venv/Scripts/pyinstaller.exe" --onefile --noconsole main.py
+
+
+cd "C:/Users/PC/Desktop/gestion stock"
+& ".venv/Scripts/pyinstaller.exe" --onefile --noconsole --add-data "logo.jpg;." main.py
