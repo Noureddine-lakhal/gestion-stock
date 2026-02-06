@@ -38,9 +38,16 @@ Run the application using Maven:
 mvn exec:java -Dexec.mainClass="com.gestionstock.Main"
 ```
 
-Or run the JAR file:
+Or run the standalone JAR file with all dependencies:
 ```bash
-java -jar target/gestion-stock-1.0-SNAPSHOT.jar
+java -jar target/gestion-stock-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
+### Running Tests
+
+To verify the application functionality without UI:
+```bash
+java -cp target/gestion-stock-1.0-SNAPSHOT-jar-with-dependencies.jar com.gestionstock.test.TestApplication
 ```
 
 ## Default Credentials
