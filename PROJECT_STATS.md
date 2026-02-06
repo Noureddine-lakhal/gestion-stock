@@ -67,7 +67,7 @@
 - ✓ CodeQL security scan passed (0 vulnerabilities)
 
 ## Dependencies
-- sqlite-jdbc 3.36.0.3 - Database connectivity
+- sqlite-jdbc 3.41.2.2 - Database connectivity (patched for CVE security vulnerability)
 - jbcrypt 0.4 - Password hashing
 - Java 11+ - Core platform
 - Maven 3.6+ - Build tool
