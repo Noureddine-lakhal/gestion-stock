@@ -69,6 +69,8 @@ public class UserDAO {
     }
 
     public void updateUser(User user) throws SQLException {
+        // Note: Password updates are not handled by this method for security reasons.
+        // Use a separate changePassword method if password updates are needed.
         String sql = "UPDATE users SET username = ?, role = ?, active = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -105,17 +105,18 @@ public class UserDialog extends JDialog {
     private void save() {
         try {
             String username = usernameField.getText().trim();
-            String password = new String(passwordField.getPassword());
+            char[] passwordChars = passwordField.getPassword();
             String role = (String) roleComboBox.getSelectedItem();
             boolean active = activeCheckBox.isSelected();
 
             if (username.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Username is required",
                         "Validation Error", JOptionPane.ERROR_MESSAGE);
+                java.util.Arrays.fill(passwordChars, ' '); // Clear password
                 return;
             }
 
-            if (!isEdit && password.isEmpty()) {
+            if (!isEdit && passwordChars.length == 0) {
                 JOptionPane.showMessageDialog(this, "Password is required for new users",
                         "Validation Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -125,8 +126,10 @@ public class UserDialog extends JDialog {
                 user = new User();
             }
             user.setUsername(username);
-            if (!password.isEmpty()) {
+            if (passwordChars.length > 0) {
+                String password = new String(passwordChars);
                 user.setPassword(password);
+                java.util.Arrays.fill(passwordChars, ' '); // Clear password from memory
             }
             user.setRole(role);
             user.setActive(active);

@@ -84,16 +84,20 @@ public class LoginFrame extends JFrame {
 
     private void login() {
         String username = usernameField.getText().trim();
-        String password = new String(passwordField.getPassword());
+        char[] passwordChars = passwordField.getPassword();
 
-        if (username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || passwordChars.length == 0) {
             JOptionPane.showMessageDialog(this, "Please enter username and password",
                     "Error", JOptionPane.ERROR_MESSAGE);
+            java.util.Arrays.fill(passwordChars, ' '); // Clear password
             return;
         }
 
         try {
+            String password = new String(passwordChars);
             User user = userDAO.authenticate(username, password);
+            java.util.Arrays.fill(passwordChars, ' '); // Clear password from memory
+            
             if (user != null) {
                 SessionManager.setCurrentUser(user);
                 dispose();
@@ -103,6 +107,7 @@ public class LoginFrame extends JFrame {
                         "Login Failed", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
+            java.util.Arrays.fill(passwordChars, ' '); // Clear password
             JOptionPane.showMessageDialog(this, "Error during login: " + ex.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
